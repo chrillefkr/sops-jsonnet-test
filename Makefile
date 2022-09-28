@@ -26,3 +26,7 @@ stdout: secrets.sops.json key.txt
 edit-secrets: secrets.sops.json key.txt
 	@SOPS_AGE_KEY=$(SOPS_AGE_KEY) sops secrets.sops.json
 
+.PHONY: decrypt
+decrypt: secrets.sops.json key.txt
+	@SOPS_AGE_KEY=$(SOPS_AGE_KEY) sops -d --output secrets.json secrets.sops.json
+
